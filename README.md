@@ -30,7 +30,9 @@ Allow the tool to read your Google Analytics account data.
 
 `python ga_permissions_to_csv.py [-a account_id,account_id2,account_id3] path_to_client_secrets`
 
-This module creates a CSV file for every account ID provided as an argument to the python file (to which you have sufficient Account-level privileges to view user rights). To simply process all the accounts you have access to, just drop the `-a` flag from the command.
+This module creates a CSV file of the GA accounts you have access to, with the user permissions listed for each account in their respective CSV file. You need Manage Users access to each GA account for which a file is created.
+
+You can provide a list of Google Analytics Account IDs to the `-a` argument, or you can drop the `-a` argument to create CSV files for all the accounts you have sufficient access to.
 
 `path_to_client_secrets` is a relative path to where the client_secrets.json file is stored.
 
