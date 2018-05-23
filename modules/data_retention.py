@@ -78,7 +78,7 @@ def update_retention(service, account_id, property_id, property_name, website_ur
 def parse_csv_and_update(path, service):
     skip_accounts = []
     always_yes = False
-    with open(path, 'rb') as myfile:
+    with open(path, 'r') as myfile:
         retention_list=csv.reader(myfile)
         headers=retention_list.next()
         print('Validating CSV headers...')
@@ -170,7 +170,7 @@ def main(argv):
     if args.create:
         if not os.path.exists('csv'):
             os.makedirs('csv')
-        with open('csv/data_retention_list.csv', 'wb') as myfile:
+        with open('csv/data_retention_list.csv', 'w') as myfile:
             wr = csv.writer(myfile)
             wr.writerow(HEADERS)
             hierarchy=build_hierarchy(service)
