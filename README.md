@@ -1,6 +1,6 @@
 # ga-cl
 
-Simple Google Analytics command line tools for Python (2.7+).
+Simple Google Analytics command line tools for Python (2.x).
 
 ## Get started
 
