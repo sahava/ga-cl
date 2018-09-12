@@ -87,7 +87,9 @@ By providing both the `-w` and `-p` flags, you can also link these newly created
 **Examples:**
 
 *Create filters from file filters.json in account 12345*
+
 `python insert_filter.py -c 12345 -j ./filters.json ../secret/client_secrets.json`
 
 *Create filters from file filters.json and link them to profile 67890 in property UA-12345-1*
+
 `python insert_filter.py -c 12345 -j ./filters.json -w UA-12345-1 -p 67890 ../secret/client_secrets.json`
