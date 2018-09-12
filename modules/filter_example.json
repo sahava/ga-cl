@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Request URI to lowercase",
+    "type": "LOWERCASE",
+    "lowercaseDetails": {
+      "field": "PAGE_REQUEST_URI"
+    }
+  }
+]

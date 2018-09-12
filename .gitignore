@@ -4,3 +4,4 @@ secret/
 csv/
 .csv
 *.pyc
+.DS_Store
