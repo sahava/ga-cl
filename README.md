@@ -76,20 +76,24 @@ EDIT permissions on the Google Analytics account for creating the filters.
 
 EDIT permissions on the Google Analytics property and profile level where you want to link the newly created filters.
 
+You will need the Account ID, Web Property ID (UA-12345-1), and Profile ID of the account and the profile(s) where you want to create and link these filters. 
+
+You can get the Account ID and the Profile ID by looking for the string `/aNNNwNNNpNNN` in the URL of the Google Analytics user interface, when browsing through reports of any given profile.
+
+The number after `a` (but before `w`) is the Account ID, and the number after `p` is the Profile ID.
+
 **Run:**
 
-`python insert_filter.py -c accountId -j /path/to/file.json [-w webPropertyId -p profileId] path_to_client_secrets`
+`python insert_filter.py -c accountId -j /path/to/file.json path_to_client_secrets`
 
 With this module, you can compile a list of filter resources (https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters#resource) in a `.json` file, which you then use to create these filters in the given Google Analytics account ID.
 
-By providing both the `-w` and `-p` flags, you can also link these newly created filters (in the order they are in the JSON, and to the end of the list of pre-existing filters) to any given profile to which you have sufficient access.
+Once the filters have been created, the tool will prompt you for a Web Property ID and a Profile ID to which these filters will be linked. You can also quit the tool at this point if you don't want to create the links.
 
-**Examples:**
+Once a set of links have been created, the tool will prompt you again for a Web Property ID and a Profile ID, if you want to link the filters to another profile.
+
+**Example:**
 
 *Create filters from file filters.json in account 12345*
 
 `python insert_filter.py -c 12345 -j ./filters.json ../secret/client_secrets.json`
-
-*Create filters from file filters.json and link them to profile 67890 in property UA-12345-1*
-
-`python insert_filter.py -c 12345 -j ./filters.json -w UA-12345-1 -p 67890 ../secret/client_secrets.json`
