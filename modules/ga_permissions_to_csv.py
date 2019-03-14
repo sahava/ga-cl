@@ -25,7 +25,7 @@ def get_accounts(service, accounts):
 
 def get_permissions(service, aid):
     try:
-        permissions = service.management().accountUserLinks().list(accountId=aid, fields='items(id,userRef/email)').execute()
+        permissions = service.management().accountUserLinks().list(accountId=aid, fields='items(permissions/effective,userRef/email)').execute()
         return permissions.get('items')
     except HttpError as e:
         if 'insufficientPermission' in e.content:
@@ -46,12 +46,10 @@ def get_valid_filename(s):
 def build_csv(permissions, account):
     with open('csv/%s_%s.csv' % (get_valid_filename(account['name']), account['id']), 'wb') as myfile:
         wr = csv.writer(myfile)
-        wr.writerow(['Account name', account['name'].encode('utf-8')])
-        wr.writerow(['Account ID', account['id']])
-        wr.writerow([])
-        wr.writerow(['Email address', 'Permission ID'])
+        wr.writerow(['Account name', 'Account ID', 'Email address', 'Permission'])
         for permission in permissions:
-            wr.writerow([permission['userRef']['email'], permission['id']])
+            effective = '|'.join(permission.get('permissions', {}).get('effective', []))
+            wr.writerow([account['name'].encode('utf-8'), account['id'], permission['userRef']['email'], effective])
 
 
 def main(argv):
